@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="no-scrollbar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#FFFFFF" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="北海道冬日之旅">
+
+    <title>Hokkaido Winter Trip 2025</title>
+    
+    <!-- Google Fonts: Noto Serif JP -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@700;900&display=swap" rel="stylesheet">
+
+    <!-- Favicon (Browser Tab) - Snow Theme -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%23F9F9F7'/%3E%3Ccircle cx='256' cy='256' r='180' fill='%23BEE3F8'/%3E%3Cpath d='M256 100v312M100 256h312M145 145l222 222M145 367l222-222' stroke='%23FFFFFF' stroke-width='30'/%3E%3C/svg%3E" />
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="https://img.icons8.com/fluency/512/snowflake.png" />
+
+    <!-- Android Manifest -->
+    <link rel="manifest" href="./manifest.json" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'mag-paper': '#F9F9F7',       // Main Background
+              'mag-white': '#FFFFFF',       // Card Background
+              'mag-black': '#2C2C2C',       // Primary Text
+              'mag-gray': '#8E8E8E',        // Secondary Text
+              'mag-gold': '#5D7C8F',        // Changed to "Cold Blue" for Hokkaido
+              'mag-gold-light': '#EBF8FF',  // Pale Blue Background
+              'mag-red': '#C63D0F',         // Highlight
+            },
+            fontFamily: {
+              sans: ['-apple-system', 'BlinkMacSystemFont', 'Helvetica Neue', 'Arial', 'PingFang TC', 'Heiti TC', 'Microsoft JhengHei', 'sans-serif'],
+              serif: ['Georgia', 'Times New Roman', 'serif'],
+              noto: ['"Noto Serif JP"', 'serif'],
+            },
+            boxShadow: {
+              'soft': '0 4px 20px rgba(0, 0, 0, 0.03)',
+              'float': '0 10px 30px rgba(0, 0, 0, 0.08)',
+            },
+            padding: {
+              'safe-top': 'env(safe-area-inset-top)',
+              'safe-bottom': 'env(safe-area-inset-bottom)',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      html, body, .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+          overflow-x: hidden;
+      }
+      *::-webkit-scrollbar { display: none !important; }
+      body {
+        -webkit-tap-highlight-color: transparent;
+        background-color: #F9F9F7;
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+      }
+      header {
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        background-color: #FFFFFF;
+      }
+      #root { width: 100%; overflow-x: hidden; }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "vite": "https://esm.sh/vite@^7.3.0",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-mag-paper text-mag-black antialiased selection:bg-mag-gold selection:text-white no-scrollbar">
+    <div id="root" class="no-scrollbar"></div>
+    <script type="module" src="./index.tsx"></script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

@@ -67,7 +67,7 @@ const App: React.FC = () => {
       
       const parsedData: ExpenseRecord[] = (json.data || [])
         .filter((row: any) => row.rowIndex >= 3 && !row.date.includes('日期'))
-        .map((row: any) => {
+        .map((row: any): ExpenseRecord => {
           const sATwd = parseCurrency(row.splitATwd);
           const sBTwd = parseCurrency(row.splitBTwd);
           const sAJpy = parseCurrency(row.splitAJpy);
@@ -92,7 +92,7 @@ const App: React.FC = () => {
             splitBJpy: sBJpy
           };
         })
-        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime() || b.rowIndex - a.rowIndex);
+        .sort((a: ExpenseRecord, b: ExpenseRecord) => new Date(b.date).getTime() - new Date(a.date).getTime() || b.rowIndex - a.rowIndex);
 
       setExpenses(parsedData);
     } catch (err: any) { setExpensesError(err.message || "讀取失敗"); }

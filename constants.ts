@@ -3,7 +3,6 @@ import { DaySchedule, ChecklistItem, LocationDetail, UsefulLink, EmergencyContac
 // 極致安全的環境變數讀取
 const getEnvUrl = () => {
   try {
-    // 檢查 import.meta 是否存在，避免非 Vite 環境噴錯
     if (typeof import.meta !== 'undefined' && (import.meta as any).env) {
       return (import.meta as any).env.VITE_APP_SCRIPT_URL;
     }

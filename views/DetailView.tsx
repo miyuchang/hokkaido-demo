@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { LocationDetail } from '../types';
 import { MapIcon, CopyIcon, BusIcon, WalkIcon, XIcon } from '../components/Icons';
+import { sanitizeUrl } from '../utils';
 
 interface DetailViewProps {
   location: LocationDetail;
@@ -185,12 +186,22 @@ export const DetailView: React.FC<DetailViewProps> = ({ location, onBack }) => {
             {/* Action Buttons */}
             <div className="flex flex-col gap-3 mt-4">
               {location.mapUrl && (
-                <a href={location.mapUrl} target="_blank" className="flex items-center justify-center w-full py-4 bg-mag-black text-white text-sm font-bold tracking-[0.25em] rounded-none shadow-lg active:scale-[0.98] transition-all">
+                <a 
+                  href={sanitizeUrl(location.mapUrl)} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-full py-4 bg-mag-black text-white text-sm font-bold tracking-[0.25em] rounded-none shadow-lg active:scale-[0.98] transition-all"
+                >
                   GOOGLE MAPS
                 </a>
               )}
               {location.websiteUrl && (
-                <a href={location.websiteUrl} target="_blank" className="flex items-center justify-center w-full py-4 bg-white text-mag-black border-2 border-mag-black text-sm font-bold tracking-[0.25em] rounded-none active:bg-gray-50 transition-all">
+                <a 
+                  href={sanitizeUrl(location.websiteUrl)} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-full py-4 bg-white text-mag-black border-2 border-mag-black text-sm font-bold tracking-[0.25em] rounded-none active:bg-gray-50 transition-all"
+                >
                    OFFICIAL SITE
                 </a>
               )}

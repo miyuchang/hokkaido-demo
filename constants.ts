@@ -1,14 +1,25 @@
 import { DaySchedule, ChecklistItem, LocationDetail, UsefulLink, EmergencyContact } from './types';
 
-// Google Apps Script URL for Expenses
-export const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby5UHb7MlZJC61uBNA_WKK8FG5KowmyLzyBBaUTb0GtHYj6ZrPWdhU9RieXbuJMKTxC/exec';
-// Optional: Google Sheet URL for direct access
-export const GOOGLE_SHEET_URL = 'https://docs.google.com/spreadsheets/d/1GxlqNNOFl6M7GkjXaAmaFiLY90Ia_irHyerJ6_v0258/edit?gid=1261285869#gid=1261285869';
+// 極致安全的環境變數讀取
+const getEnvUrl = () => {
+  try {
+    // 檢查 import.meta 是否存在，避免非 Vite 環境噴錯
+    if (typeof import.meta !== 'undefined' && (import.meta as any).env) {
+      return (import.meta as any).env.VITE_APP_SCRIPT_URL;
+    }
+  } catch (e) {
+    // 忽略錯誤
+  }
+  return null;
+};
+
+export const GOOGLE_SCRIPT_URL = getEnvUrl() || 'https://script.google.com/macros/s/AKfycby5UHb7MlZJC61uBNA_WKK8FG5KowmyLzyBBaUTb0GtHYj6ZrPWdhU9RieXbuJMKTxC/exec';
+export const GOOGLE_SHEET_URL = 'https://docs.google.com/spreadsheets/d/1hT-ZhrWeRmMdcjt5vOa32xAWqQ7HW_UjADERuDFmGdM/edit?usp=sharing';
 
 export const PRE_TRIP_NOTES = [
   "北海道冬季溫差大，室外約 -10~5°C，室內暖氣極強",
   "建議採「洋蔥式穿法」，外套需防風潑水",
-  "必備雪地止滑鞋墊或穿著抓地力佳的雪靴",
+  "必備雪地止滑鞋墊 or 穿著抓地力佳的雪靴",
   "冬季氣候乾燥，隨身攜帶護脣膏、乳液與保濕用品",
   "護照、日圓現金、信用卡務必隨身攜帶"
 ];
@@ -131,7 +142,7 @@ export const LOCATION_DETAILS: Record<string, LocationDetail> = {
   'otaru_canal': {
     id: 'otaru_canal',
     title: '小樽運河與歷史建築',
-    description: '保留了大正時代歷史感的小樽運河。兩旁磚石倉庫群在夜間點亮煤氣燈後，彷彿置身於懷舊電影場景中。',
+    description: '保留了大正時代歷史感的小樽運河。兩旁磚石倉庫群在夜間點亮煤氣燈後，彷彿置身於懷舊電影場景中時。',
     address: '北海道小樽市港町',
     carNaviPhone: '0134-32-4111',
     mapUrl: 'https://maps.app.goo.gl/hG6pLzM49y5dGjGWA'
@@ -187,7 +198,7 @@ export const LOCATION_DETAILS: Record<string, LocationDetail> = {
   'lake_mashu': {
     id: 'lake_mashu',
     title: '摩周湖 (霧之摩周)',
-    description: '全世界透明度最高的湖泊之一。冬季湛藍的湖水與四周積雪的火山口壁形成強烈對比，美不勝收。',
+    description: '全世界透明度最高的湖泊之一。冬季湛藍的湖水與四周積雪的火山口壁遊戲中時。',
     address: '北海道川上郡弟子屈町摩周',
     mapUrl: 'https://maps.app.goo.gl/m2R7S7M6G5y9R8P7A'
   },

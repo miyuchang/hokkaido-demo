@@ -21,3 +21,16 @@ export const calculateSplit = (total: number, type: 'equal' | 'manual', manualA?
   const b = total - a;
   return { a, b };
 };
+
+/**
+ * 安全 URL 檢查：確保連結僅限於 http, https 或 tel, 並過濾 javascript: 注入
+ */
+export const sanitizeUrl = (url: string | undefined): string => {
+  if (!url) return '#';
+  const trimmedUrl = url.trim();
+  if (trimmedUrl.startsWith('https://') || trimmedUrl.startsWith('http://') || trimmedUrl.startsWith('tel:') || trimmedUrl.startsWith('mailto:')) {
+    return trimmedUrl;
+  }
+  console.warn(`Blocked suspicious URL: ${trimmedUrl}`);
+  return '#';
+};

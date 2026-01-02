@@ -14,18 +14,28 @@ import { SunIcon, CloudIcon, RainIcon, SnowIcon } from './components/Icons';
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<Tab>(Tab.ITINERARY);
   
+  // 安全讀取 LocalStorage 的 Helper
+  const safeGetItem = <T,>(key: string, defaultValue: T): T => {
+    try {
+      const saved = localStorage.getItem(key);
+      if (!saved || saved === 'undefined') return defaultValue;
+      return JSON.parse(saved);
+    } catch (e) {
+      console.warn(`Failed to parse localStorage key "${key}":`, e);
+      return defaultValue;
+    }
+  };
+
   // 狀態初始化
   const [checkedItems, setCheckedItems] = useState<Set<string>>(() => {
-    try {
-      const saved = localStorage.getItem('checked_items');
-      return saved ? new Set(JSON.parse(saved)) : new Set();
-    } catch { return new Set(); }
+    const arr = safeGetItem<string[]>('checked_items', []);
+    return new Set(arr);
   });
 
-  const [todoList, setTodoList] = useState<ChecklistItem[]>(() => JSON.parse(localStorage.getItem('dynamic_todo_list') || JSON.stringify(TODO_LIST)));
-  const [carryOnList, setCarryOnList] = useState<ChecklistItem[]>(() => JSON.parse(localStorage.getItem('dynamic_carryon_list') || JSON.stringify(PACKING_CARRY_ON)));
-  const [checkedBagList, setCheckedBagList] = useState<ChecklistItem[]>(() => JSON.parse(localStorage.getItem('dynamic_checkedbag_list') || JSON.stringify(PACKING_CHECKED)));
-  const [shoppingList, setShoppingList] = useState<ShoppingItem[]>(() => JSON.parse(localStorage.getItem('shopping_list') || '[]'));
+  const [todoList, setTodoList] = useState<ChecklistItem[]>(() => safeGetItem('dynamic_todo_list', TODO_LIST));
+  const [carryOnList, setCarryOnList] = useState<ChecklistItem[]>(() => safeGetItem('dynamic_carryon_list', PACKING_CARRY_ON));
+  const [checkedBagList, setCheckedBagList] = useState<ChecklistItem[]>(() => safeGetItem('dynamic_checkedbag_list', PACKING_CHECKED));
+  const [shoppingList, setShoppingList] = useState<ShoppingItem[]>(() => safeGetItem('shopping_list', []));
 
   // 整合同步機制
   useEffect(() => {
